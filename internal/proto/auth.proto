@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto";
+
+message SignUpRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message SignUpResponse {
+    string message = 1;
+    string status = 2;
+}
+
+message SignInRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message SignInResponse {
+    string message = 1;
+    string token = 2;
+}
+
+message TestRequest {
+    string message = 1;
+}
+
+message TestResponse {
+    string message = 1;
+}
+
+service AuthService {
+    rpc SignUp(SignUpRequest) returns (stream SignUpResponse) {}
+    rpc SignIn(SignInRequest) returns (stream SignInResponse) {}
+    rpc TestMessage(TestRequest) returns (stream TestResponse) {}
+}
+
+
+
